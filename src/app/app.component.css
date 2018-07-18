@@ -1,0 +1,16 @@
+.selector-box {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.restaurant-selector {
+  color: white;
+  text-align: center;
+  line-height: 300px;
+  border: 1px solid gray;
+  width: 40%;
+  min-width: 300px;
+  margin: 20px;
+  background: black;
+}
