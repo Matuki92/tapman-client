@@ -1,15 +1,18 @@
-.formVisible {
-  display: none;
-}
 
-.form-toggle-btn {
-
+button.submit {
+  color: white;
+  font-family: inherit;
+  text-transform: inherit;
+  width: 100%;
+  background: rgb(95, 0, 0);
+  padding: 10px;
+  border: none;
 }
 
 .button {
-  border: 1px solid black;
-  padding: 2px 5px;
   cursor: move;
+  margin-left: 10px;
+  padding: 0 5px;
 }
 
 .add {
@@ -28,6 +31,7 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid white;
+  margin-bottom: 15px;
 }
 
 .box {
@@ -47,11 +51,28 @@
   text-align: center;
 }
 
+@media (min-width: 768px) {
+  .box.form {
+    padding: 0 20%;
+  }
+}
+
 .box.form input {
- float: right;
+  margin-left: 15px;
+  font-family: inherit;
+  color: gray;
+  background: none;
+  border: none;
+  border-bottom: 1px solid gray;
+  height: 50px;
+  font-size: 1.5rem;
+}
+
+.box.form input.long-input {
+  width: 100%;
 }
 
 .box.form .field {
   line-height: 140%;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }

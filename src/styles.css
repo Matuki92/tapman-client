@@ -13,13 +13,18 @@ body {
   padding: 0;
 }
 
-
 /* ---- typography ---- */
+
+@font-face {
+  font-family: 'Gobold';
+  src: url('assets/gobold.otf')  format('truetype');
+}
 
 body {
   background: #343334;
   color: #111;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Gobold', Arial, sans-serif;
+  text-transform: uppercase;
   font-size: 16px;
   line-height: 147%;
 }
@@ -70,7 +75,12 @@ p {
   }
 }
 
-
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
 
 
 /* ---- components ---- */

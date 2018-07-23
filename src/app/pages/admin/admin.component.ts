@@ -15,9 +15,9 @@ export class AdminComponent implements OnInit {
 
   restaurantName: String;
 
-  formStatus = false;
-
-  newBeer = {}
+  newBeer = {
+    new: true
+  }
 
   constructor(
     private restaurantService: RestaurantService,
@@ -39,6 +39,13 @@ export class AdminComponent implements OnInit {
         })
         .catch(err => {console.log(err)})
     });
+    this.resetNewBeer();
+  }
+
+  resetNewBeer() {
+    this.newBeer = {
+      new: true
+    }
   }
 
   updateBeers() {
@@ -72,24 +79,37 @@ export class AdminComponent implements OnInit {
     }
   }
 
+  editBeer(beer) {
+    this.newBeer = beer;
+  }
+
   deleteBeer(beer) {
     this.beerService.delete(beer._id)
       .then(() => {
         this.updateBeers();
+        this.updateRestaurant();
       })
-      .catch();
-  }
-
-  toggleForm() {
-    this.formStatus = !this.formStatus;
+      .catch(err => {console.log(err)});
   }
 
   submitForm(form) {
-    this.beerService.add(this.newBeer)
-      .then((result) => {
-        console.log(result);
-        this.newBeer = {};
-      })
-      .catch();
+
+    if (this.newBeer.new) {
+      delete this.newBeer.new;
+
+      this.beerService.add(this.newBeer)
+        .then(() => {
+          this.updateBeers();
+          this.resetNewBeer();
+        })
+        .catch(err => {console.log(err)});
+    } else {
+      this.beerService.update(this.newBeer)
+        .then(() => {
+          this.updateBeers();
+          this.resetNewBeer();
+        })
+        .catch(err => {console.log(err)});
+    }
   }
 }

@@ -22,22 +22,20 @@
     <p>{{beer.name}}</p>
     <div>
       <a class="button add" (click)="toggleBeer(beer, 'add')">Add</a>
-      <a class="button edit">Edit</a>
+      <a class="button edit" (click)="editBeer(beer)">Edit</a>
       <a class="button delete" (click)="deleteBeer(beer)">Delete</a>
     </div>
   </div>
 </div>
 
 <div class="box form">
-  <a class="form-toggle-btn" (click)="toggleForm()"><h2>> Add new beer <</h2></a>
-  <div [ngClass]="{'formVisible': !formStatus}">
-
+  <h2>> Add new beer <</h2>
     <!-- FORM -->
     <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
       <!-- Beer name -->
       <div class="field" [ngClass]="{'has-error': feedbackEnabled && nameField.errors}">
         <label>Beer name</label>
-        <input type="text" name="name" [(ngModel)]="newBeer.name" #nameField="ngModel" required [disabled]="processing"/>
+        <input class="long-input" type="text" name="name" [(ngModel)]="newBeer.name" #nameField="ngModel" required [disabled]="processing"/>
         <div *ngIf="feedbackEnabled && nameField.errors">
           <p *ngIf="nameField.errors.required" class="validation">Beer name required</p>
         </div>
@@ -45,7 +43,7 @@
       <!-- Beer type -->
       <div class="field" [ngClass]="{'has-error': feedbackEnabled && typeField.errors}">
         <label>Beer type</label>
-        <input type="text" name="type" [(ngModel)]="newBeer.style" #typeField="ngModel" required [disabled]="processing"/>
+        <input class="long-input" type="text" name="type" [(ngModel)]="newBeer.style" #typeField="ngModel" required [disabled]="processing"/>
         <div *ngIf="feedbackEnabled && typeField.errors">
           <p *ngIf="typeField.errors.required" class="validation">Beer type required</p>
         </div>
@@ -53,7 +51,7 @@
       <!-- Beer abv -->
       <div class="field" [ngClass]="{'has-error': feedbackEnabled && abvField.errors}">
         <label>Alc %</label>
-        <input type="number" name="abv" [(ngModel)]="newBeer.abv" #abvField="ngModel" required [disabled]="processing"/>
+        <input class="long-input" type="number" name="abv" [(ngModel)]="newBeer.abv" #abvField="ngModel" required [disabled]="processing"/>
         <div *ngIf="feedbackEnabled && abvField.errors">
           <p *ngIf="abvField.errors.required" class="validation">Beer abv required</p>
         </div>
@@ -61,12 +59,12 @@
       <!-- Beer ibu -->
       <div class="field">
         <label>Ibu</label>
-        <input type="number" name="ibu" [(ngModel)]="newBeer.ibu" [disabled]="processing"/>
+        <input class="long-input" type="number" name="ibu" [(ngModel)]="newBeer.ibu" [disabled]="processing"/>
       </div>
       <!-- Beer brewery -->
       <div class="field" [ngClass]="{'has-error': feedbackEnabled && breweryField.errors}">
         <label>Brewery</label>
-        <input type="text" name="brewery" [(ngModel)]="newBeer.brewery" #breweryField="ngModel" required [disabled]="processing"/>
+        <input class="long-input" type="text" name="brewery" [(ngModel)]="newBeer.brewery" #breweryField="ngModel" required [disabled]="processing"/>
         <div *ngIf="feedbackEnabled && breweryField.errors">
           <p *ngIf="breweryField.errors.required" class="validation">Brewery name required</p>
         </div>
@@ -74,18 +72,18 @@
       <!-- Beer price -->
       <div class="field">
         <label>Pint price</label>
-        <input type="number" name="pintPrice" [(ngModel)]="newBeer.pintPrice" #pintPriceField="ngModel" required [disabled]="processing"/>
+        <input class="long-input" type="number" name="price" [(ngModel)]="newBeer.price" #priceField="ngModel" required [disabled]="processing"/>
       </div>
       <div class="input-boxes">
         <!-- Beer color -->
-        <div class="form-inline-items">
+        <div class="field form-inline-items">
           <label>Beer color</label>
           <input type="color" name="color" [(ngModel)]="newBeer.color" [disabled]="processing"/>
         </div>
       </div>
 
       <div class="field submit">
-        <button type="submit" [disabled]="processing">Submit</button>
+        <button type="submit" [disabled]="processing" class="submit">Submit</button>
         <div *ngIf="message">
           <p class="validation-success">{{message}}</p>
         </div>
@@ -94,6 +92,4 @@
         </div>
       </div>
     </form>
-  <!-- {{form.invalid}} -->
-  </div>
 </div>

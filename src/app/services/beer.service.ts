@@ -33,4 +33,12 @@ export class BeerService {
       .toPromise();
   }
 
+  update(beer): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.put(`${this.baseUrl}/beers/update`, beer, options)
+      .toPromise();
+  }
+
 }
