@@ -1,0 +1,12 @@
+h1, h2, h3 {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+h1, h2 {
+  display: inline-block;
+}
+
+h2 {
+  float: right;
+}

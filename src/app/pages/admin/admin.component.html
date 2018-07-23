@@ -1,0 +1,91 @@
+<div class="box">
+  <h2>{{restaurantName}}'s beers</h2>
+    <ng-container *ngIf="!ownBeers">
+      <p>loading...</p>
+    </ng-container>
+  <div *ngFor="let beer of ownBeers">
+    <p>{{beer.name}}</p>
+  </div>
+</div>
+
+<div class="box">
+  <h2>All available beers</h2>
+  <hr>
+  <ng-container *ngIf="!beers">
+    <p>loading...</p>
+  </ng-container>
+  <div *ngFor="let beer of beers">
+    <p>{{beer.name}}</p>
+    <a (click)="activateBeer(beer)">Add</a>
+  </div>
+</div>
+
+<div class="box">
+  <a (click)="toggleForm()"><h2>Add new beer</h2></a>
+  <div [ngClass]="{'formVisible': !formStatus}">
+      <hr>
+    <!-- FORM -->
+    <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
+      <!-- Beer name -->
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && nameField.errors}">
+        <label>Beer name</label>
+        <input type="text" name="name" [(ngModel)]="newBeer.name" #nameField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && nameField.errors">
+          <p *ngIf="nameField.errors.required" class="validation">Beer name required</p>
+        </div>
+      </div>
+      <!-- Beer type -->
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && typeField.errors}">
+        <label>Beer type</label>
+        <input type="text" name="type" [(ngModel)]="newBeer.style" #typeField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && typeField.errors">
+          <p *ngIf="typeField.errors.required" class="validation">Beer type required</p>
+        </div>
+      </div>
+      <!-- Beer abv -->
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && abvField.errors}">
+        <label>Alc %</label>
+        <input type="number" name="abv" [(ngModel)]="newBeer.abv" #abvField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && abvField.errors">
+          <p *ngIf="abvField.errors.required" class="validation">Beer abv required</p>
+        </div>
+      </div>
+      <!-- Beer ibu -->
+      <div class="field">
+        <label>Ibu</label>
+        <input type="number" name="ibu" [(ngModel)]="newBeer.ibu" [disabled]="processing"/>
+      </div>
+      <!-- Beer brewery -->
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && breweryField.errors}">
+        <label>Brewery</label>
+        <input type="text" name="brewery" [(ngModel)]="newBeer.brewery" #breweryField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && breweryField.errors">
+          <p *ngIf="breweryField.errors.required" class="validation">Brewery name required</p>
+        </div>
+      </div>
+      <!-- Beer price -->
+      <div class="field">
+        <label>Pint price</label>
+        <input type="number" name="pintPrice" [(ngModel)]="newBeer.pintPrice" #pintPriceField="ngModel" required [disabled]="processing"/>
+      </div>
+      <div class="input-boxes">
+        <!-- Beer color -->
+        <div class="form-inline-items">
+          <label>Beer color</label>
+          <input type="color" name="color" [(ngModel)]="newBeer.color" [disabled]="processing"/>
+        </div>
+      </div>
+
+      <div class="field submit">
+        <button type="submit" [disabled]="processing">Submit</button>
+        <div *ngIf="message">
+          <p class="validation-success">{{message}}</p>
+        </div>
+        <div *ngIf="feedbackEnabled && form.invalid">
+          <p class="validation">there are errors in the form, please review the fields</p>
+        </div>
+      </div>
+    </form>
+  <!-- {{form.invalid}} -->
+  </div>
+</div>

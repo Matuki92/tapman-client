@@ -1,0 +1,11 @@
+
+<div class="selector-box">
+  <ng-container *ngFor="let restaurant of restaurants">
+    <a [routerLink]="[restaurant.name]">
+      <div class="restaurant-selector">
+        {{restaurant.name}}
+      </div>
+    </a>
+  </ng-container>
+</div>
+

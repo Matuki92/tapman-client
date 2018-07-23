@@ -1,0 +1,11 @@
+.formVisible {
+  display: none;
+}
+
+.box {
+  color: white;
+  width: 70%;
+  margin: 5px auto;
+  padding: 5px;
+  border: 1px solid gray;
+}

@@ -1,9 +1,8 @@
-<!-- <app-display></app-display> -->
-<div id="logo">
-    <img src="../assets/full-logo.png" alt="">
-  </div>
 
-<div class="selector-box">
-  <div class="restaurant-selector">Guma</div>
-  <div class="restaurant-selector">Barna</div>
+<div id="logo">
+  <a [routerLink]="['/']">
+    <img src="../assets/full-logo.png" alt="">
+  </a>
 </div>
+
+<router-outlet></router-outlet>
