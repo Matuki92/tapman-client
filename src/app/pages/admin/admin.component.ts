@@ -26,35 +26,58 @@ export class AdminComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.updateRestaurant()
+    this.updateBeers()
+  }
+
+  updateRestaurant() {
     this.activatedRoute.params.subscribe(params => {
       this.restaurantName = params.name;
       this.restaurantService.listOwnBeers(params.name)
         .then(result => {
           this.ownBeers = result.beers;
-
-          return this.beerService.getBeers()
-            .then(beers => {
-              this.beers = beers;
-            })
         })
         .catch(err => {console.log(err)})
     });
   }
 
-  activateBeer(beer) {
+  updateBeers() {
+    this.beerService.getBeers()
+      .then(beers => {
+        this.beers = beers;
+      })
+      .catch(err => {console.log(err)})
+  }
+
+  toggleBeer(beer, action) {
+
     const data = {
       restaurantName: this.restaurantName,
       beerId: beer._id
+    };
+
+    if (action === 'add') {
+      this.restaurantService.pushBeer(data)
+        .then(() => {
+          this.updateRestaurant()
+        })
+        .catch(err => {console.log(err)});
+
+    } else if (action === 'remove') {
+      this.restaurantService.removeBeer(data)
+        .then(() => {
+          this.updateRestaurant();
+        })
+        .catch(err => {console.log(err)});
     }
-    this.restaurantService.pushBeer(data)
+  }
+
+  deleteBeer(beer) {
+    this.beerService.delete(beer._id)
       .then(() => {
-        this.restaurantService.listOwnBeers(this.restaurantName)
-          .then( result => {
-            this.ownBeers = result.beers;
-          })
-          .catch(err => {console.log(err)})}
-      )
-      .catch(err => {console.log(err)});
+        this.updateBeers();
+      })
+      .catch();
   }
 
   toggleForm() {

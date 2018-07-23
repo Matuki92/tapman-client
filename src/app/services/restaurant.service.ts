@@ -33,4 +33,12 @@ export class RestaurantService {
       .toPromise();
   }
 
+  removeBeer(data): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.post(`${this.baseUrl}/restaurants/remove`, data, options)
+      .toPromise();
+  }
+
 }

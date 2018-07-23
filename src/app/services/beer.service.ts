@@ -25,4 +25,12 @@ export class BeerService {
       .toPromise();
   }
 
+  delete(beerId): Promise<any> {
+    const options = {
+      withCredentials: true
+    };
+    return this.httpClient.delete(`${this.baseUrl}/beers/${beerId}`, options)
+      .toPromise();
+  }
+
 }

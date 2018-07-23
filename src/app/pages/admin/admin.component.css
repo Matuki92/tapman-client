@@ -2,10 +2,56 @@
   display: none;
 }
 
+.form-toggle-btn {
+
+}
+
+.button {
+  border: 1px solid black;
+  padding: 2px 5px;
+  cursor: move;
+}
+
+.add {
+  background: green;
+}
+
+.delete {
+  background: red;
+}
+
+.edit {
+  background: blue;
+}
+
+.beer-fields {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
 .box {
   color: white;
-  width: 70%;
-  margin: 5px auto;
-  padding: 5px;
-  border: 1px solid gray;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.box p, .box a {
+  display: inline-block;
+}
+
+.box h2 {
+  padding-top: 50px;
+  text-align: center;
+}
+
+.box.form input {
+ float: right;
+}
+
+.box.form .field {
+  line-height: 140%;
+  margin-bottom: 5px;
 }

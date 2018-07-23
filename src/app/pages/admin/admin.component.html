@@ -1,29 +1,37 @@
 <div class="box">
   <h2>{{restaurantName}}'s beers</h2>
+
     <ng-container *ngIf="!ownBeers">
       <p>loading...</p>
     </ng-container>
-  <div *ngFor="let beer of ownBeers">
+  <div class="beer-fields" *ngFor="let beer of ownBeers">
     <p>{{beer.name}}</p>
+    <div>
+      <a class="button delete" (click)="toggleBeer(beer, 'remove')">Remove</a>
+    </div>
   </div>
 </div>
 
 <div class="box">
   <h2>All available beers</h2>
-  <hr>
+
   <ng-container *ngIf="!beers">
     <p>loading...</p>
   </ng-container>
-  <div *ngFor="let beer of beers">
+  <div class="beer-fields" *ngFor="let beer of beers">
     <p>{{beer.name}}</p>
-    <a (click)="activateBeer(beer)">Add</a>
+    <div>
+      <a class="button add" (click)="toggleBeer(beer, 'add')">Add</a>
+      <a class="button edit">Edit</a>
+      <a class="button delete" (click)="deleteBeer(beer)">Delete</a>
+    </div>
   </div>
 </div>
 
-<div class="box">
-  <a (click)="toggleForm()"><h2>Add new beer</h2></a>
+<div class="box form">
+  <a class="form-toggle-btn" (click)="toggleForm()"><h2>> Add new beer <</h2></a>
   <div [ngClass]="{'formVisible': !formStatus}">
-      <hr>
+
     <!-- FORM -->
     <form (ngSubmit)="submitForm(form)" #form="ngForm" novalidate [ngClass]="{'is-processing': processing}">
       <!-- Beer name -->
