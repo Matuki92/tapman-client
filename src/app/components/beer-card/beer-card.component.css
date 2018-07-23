@@ -1,4 +1,5 @@
-h1, h2, h3 {
+h1, h2, h4 {
+  text-shadow: 1px 1px 5px rgb(0, 0, 0);
   margin: 0;
   text-transform: uppercase;
 }
@@ -9,4 +10,8 @@ h1, h2 {
 
 h2 {
   float: right;
+}
+
+h4 {
+  font-size: 80%;
 }

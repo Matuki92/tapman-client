@@ -1,5 +1,5 @@
 <div id="beergrid">
   <ng-container *ngFor="let beer of beers">
-      <app-beer-card class="item" [beer]="beer" [ngStyle]="{ 'background-color': 'orange' }"></app-beer-card>
+      <app-beer-card class="item" [beer]="beer" [ngStyle]="{ 'background-color': beer.color }"></app-beer-card>
   </ng-container>
 </div>

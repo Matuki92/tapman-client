@@ -69,6 +69,14 @@
           <p *ngIf="breweryField.errors.required" class="validation">Brewery name required</p>
         </div>
       </div>
+      <!-- Beer country -->
+      <div class="field" [ngClass]="{'has-error': feedbackEnabled && breweryField.errors}">
+        <label>Country</label>
+        <input class="long-input" type="text" name="country" [(ngModel)]="newBeer.country" #countryField="ngModel" required [disabled]="processing"/>
+        <div *ngIf="feedbackEnabled && countryField.errors">
+          <p *ngIf="countryField.errors.required" class="validation">Country name required</p>
+        </div>
+      </div>
       <!-- Beer price -->
       <div class="field">
         <label>Pint price</label>

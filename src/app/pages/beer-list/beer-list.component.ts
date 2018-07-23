@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-beer-list',
@@ -9,14 +11,19 @@ export class BeerListComponent implements OnInit {
 
   beers: any;
 
-  constructor() { }
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private restaurantService: RestaurantService
+  ) { }
 
   ngOnInit() {
-    this.beers = [
-      {name: 'Test 1'},
-      {name: 'Test 2'},
-      {name: 'Test 3'}
-    ]
+    this.activatedRoute.params.subscribe(params => {
+      this.restaurantService.listOwnBeers(params.name)
+        .then(result => {
+          this.beers = result.beers;
+        })
+        .catch(err => console.log(err));
+    });
   }
 
 }
