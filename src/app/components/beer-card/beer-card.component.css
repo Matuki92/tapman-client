@@ -6,10 +6,12 @@ h1, h2, h4 {
 
 h1, h2 {
   display: inline-block;
+  margin: 20px 0;
 }
 
 h2 {
   float: right;
+  font-size: 150%;
 }
 
 h4 {
