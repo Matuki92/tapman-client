@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class BeerService {
 
-  private baseUrl = `http://dev.tapman.beer:3000`;
+  private baseUrl = `http://localhost:3000`;
 
   constructor(private httpClient: HttpClient) { }
 
