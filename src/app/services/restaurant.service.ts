@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise';
 @Injectable()
 export class RestaurantService {
 
-  private baseUrl = `http://localhost:3000`;
+  private baseUrl = `http://0.0.0.0:3000`;
 
   constructor(private httpClient: HttpClient) { }
 
